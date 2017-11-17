@@ -7,10 +7,25 @@ const items = ['Harry Poter','Hobbit',
 'White Chicks'];
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            movies: items
+        }
+    }
+
+    addMovie = (movie) => {
+        const copyMovieList = this.state.movies.slice();
+        copyMovieList.push(movie);
+        this.setState({
+            movies: copyMovieList
+        })
+    }
+
     render() {
         return <form className="tasks">
-            <Header />
-            <MovieList items={items} />
+            <Header onAddMovie={this.addMovie}/>
+            <MovieList items={this.state.movies} />
         </form>
     }
 }

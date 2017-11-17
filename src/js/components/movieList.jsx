@@ -10,6 +10,7 @@ class MovieList extends React.Component{
     }
   
     render(){
+        console.log(this.state.items) //Dlaczego tutaj nie są widoczne filmy ?
         const items = this.state.items.map( (item, i) => {
             return <MovieItem
                 title={item}

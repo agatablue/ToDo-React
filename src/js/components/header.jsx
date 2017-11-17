@@ -14,7 +14,7 @@ class Header extends React.Component{
         });
     }
     handleAddMovie = () => {
-        
+        this.props.onAddMovie(this.state.addMovieInput)
     }
     render(){
         return <div>
