@@ -31,6 +31,27 @@ h1{
 input[type=checkbox] {
   display: none;
 }
+
+.addPanel {
+   margin: 20px 0;
+  .addMovieInput {
+    background-color: #6d335c;
+    border:none;
+    height: 50px;
+    padding: 10px;
+    width:50%;
+    color: #d37b79;
+  }
+  .addMovie {
+    background-color: #34495E;
+    border:none;
+    height:70px;
+    padding: 10px;
+    width:40%;
+    color: #d37b79;
+
+  }
+}
 label{
   background: #ae5f75;
   height: 69px;
