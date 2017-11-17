@@ -1,8 +1,8 @@
 import React from 'react';
-import {ToDoItem} from './ToDoItem.jsx'
+import {MovieItem} from './movieItem.jsx'
 
-class ToDoList extends React.Component{
-    constructor(props){
+class MovieList extends React.Component{
+    constructor(props) {
         super(props);
         this.state = {
             items: this.props.items
@@ -11,7 +11,7 @@ class ToDoList extends React.Component{
   
     render(){
         const items = this.state.items.map( (item, i) => {
-            return <ToDoItem
+            return <MovieItem
                 title={item}
                 key={i}
                 labelId={`label-${i+1}`}
@@ -23,4 +23,4 @@ class ToDoList extends React.Component{
     }
 }
 
-export {ToDoList}
+export {MovieList}

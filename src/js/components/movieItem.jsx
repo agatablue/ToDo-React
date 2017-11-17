@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ToDoItem extends React.Component{
+class MovieItem extends React.Component{
  
     render(){
         const listItem =  <li>
@@ -14,4 +14,4 @@ class ToDoItem extends React.Component{
     }
 }
 
-export {ToDoItem}
+export {MovieItem}

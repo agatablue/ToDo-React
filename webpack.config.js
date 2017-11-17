@@ -7,7 +7,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 require('es6-promise').polyfill();
 
 module.exports = {
-    entry: ['./src/js/app.jsx'],
+    entry: ['./src/js/main.jsx'],
 
     output: {
         path: __dirname,
