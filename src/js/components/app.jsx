@@ -1,7 +1,7 @@
 import React from 'react';
-import {Header} from './header.jsx'
-import {MovieList} from './movieList.jsx'
-
+import {Header} from './header.jsx';
+import {MovieList} from './movieList.jsx';
+import {About} from './about.jsx';
 
 const items = ['Harry Poter','Hobbit',
 'White Chicks'];
