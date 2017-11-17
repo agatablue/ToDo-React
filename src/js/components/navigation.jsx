@@ -10,7 +10,7 @@ class Navigation extends React.Component {
 
     render() {
         return  <div>
-            <ul>
+            <ul className="navigation">
             <li>
                 <Link to="/">Home</Link>
             </li>
@@ -18,7 +18,7 @@ class Navigation extends React.Component {
                 <Link to="/about'">O nas</Link>
             </li>
             <li>
-                <Link to="/test'">Test</Link>
+                <Link to="/test">Test</Link>
             </li>
             </ul>
 
