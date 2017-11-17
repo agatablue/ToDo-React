@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {ToDoList} from './toDoList.jsx'
+import {Header} from './components/header.jsx'
+import {ToDoList} from './components/ToDoList.jsx'
 require('../sass/main.scss');
 
-const items = ['Kupić bułki','Ugotować rosół',
-    'Zrobić prezentację ze zdarzeń'];
+const items = ['Harry Poter','Hobbit',
+    'White Chicks'];
 
 ReactDOM.render(
-    <ToDoList items={items} />,
+    <form className="tasks">
+        <Header />
+        <ToDoList items={items} />
+    </form>,
     document.getElementById('app')
 );

@@ -27,13 +27,17 @@ h1{
   left: 0px;
   right: 0px;
   margin: 0px auto;
+  ul{
+    list-style: none;
+    padding:0;
+  }
 }
 input[type=checkbox] {
   display: none;
 }
 
 .addPanel {
-  margin: 20px 0;
+   margin: 20px 0;
   .addMovieInput {
     background-color: #6d335c;
     border:none;
