@@ -8,16 +8,24 @@ class MovieList extends React.Component{
             items: this.props.items
         };
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            items: nextProps.items
+        })
+    }
   
     render(){
-        console.log(this.state.items) //Dlaczego tutaj nie są widoczne filmy ?
-        const items = this.state.items.map( (item, i) => {
-            return <MovieItem
-                title={item}
-                key={i}
-                labelId={`label-${i+1}`}
-            />
-        });
+        let items = [] ;
+        if (this.state.items != undefined) {
+            items = this.state.items.map( (item, i) => {
+                return <MovieItem
+                    title={item}
+                    key={i}
+                    labelId={`label-${i+1}`}
+                />
+            });
+        }
+       
         return <ul>
             {items}
         </ul>;
