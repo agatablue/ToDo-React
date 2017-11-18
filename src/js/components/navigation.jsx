@@ -15,7 +15,7 @@ class Navigation extends React.Component {
                 <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to="/about'">O nas</Link>
+                <Link to="/about">O nas</Link>
             </li>
             <li>
                 <Link to="/test">Test</Link>

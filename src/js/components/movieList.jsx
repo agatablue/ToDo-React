@@ -19,7 +19,7 @@ class MovieList extends React.Component{
         if (this.state.items != undefined) {
             items = this.state.items.map( (item, i) => {
                 return <MovieItem
-                    title={item}
+                    title={item.title}
                     key={i}
                     labelId={`label-${i+1}`}
                 />

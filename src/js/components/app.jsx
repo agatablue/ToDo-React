@@ -14,6 +14,16 @@ class App extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const url = "https://movielists-5884a.firebaseio.com/Movies.json";
+        fetch(url).then(response => response.json() ).then( response => {
+            console.log(response) // zobacz jak wygląda ten element
+            this.setState({
+                movies: response
+            })
+        })
+    }
+
     addMovie = (movie) => {
         const copyMovieList = this.state.movies.slice();
         copyMovieList.push(movie);
