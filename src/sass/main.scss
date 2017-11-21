@@ -2,7 +2,11 @@
 @import 'navigation';
 @import 'movieList';
 
-
+.monsterOne {
+  background-image: url("../images/Purple-Monster.png");
+  height: 300px;
+  width: 300px;
+}
 
 .addPanel {
    margin: 20px 0;

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import myImage from "../../../images/Cookie_Monster.jpg";
+
 class About extends React.Component{
     render(){
         return <div> 
@@ -13,6 +15,11 @@ class About extends React.Component{
             trzeba obrać nowy target. Zresztą chyba czytałeś w njusleterze: 
             będziesz lidował w tym projekcie.
             </p>
+            <div  style={{backgroundImage: `url(${myImage})`, height: '200px', width: '200px' }}>
+            </div>
+            <div  style={{backgroundImage: `url("./images/Cookie_Monster.jpg")`, backgroundSize: '20%', height: '200px', width: '200px' }}>
+            </div>
+            <div className="monsterOne" ></div>
         </div>;
     }
 }

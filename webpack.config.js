@@ -27,8 +27,16 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: "style-loader!css-loader!sass-loader"
-            }
+                loader: "style-loader!css-loader?url=false!sass-loader"
+            },
+            { test: /\.svg$/, loader: 'svg-loader?pngScale=2' },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]'
+                }  
+            },
         ],
 
     },
@@ -39,5 +47,5 @@ module.exports = {
     },
 
     // Create Sourcemaps for the bundle
-    devtool: 'source-map'
+    // devtool: 'source-map'
 };
