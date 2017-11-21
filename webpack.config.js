@@ -7,11 +7,14 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 require('es6-promise').polyfill();
 
 module.exports = {
-    entry: ['./src/js/main.jsx'],
+    // entry: ['./src/js/main.jsx'],
+    entry : {
+        'js/app.js': './src/js/main.jsx'
+    },
 
-    output: {
-        path: __dirname,
-        filename: './js/app.js'
+    output:{
+        filename: '[name]',
+        path: __dirname + '/build'
     },
 
     plugins: [
@@ -47,5 +50,5 @@ module.exports = {
     },
 
     // Create Sourcemaps for the bundle
-    // devtool: 'source-map'
+     devtool: 'source-map'
 };

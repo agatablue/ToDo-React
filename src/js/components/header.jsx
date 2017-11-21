@@ -13,7 +13,8 @@ class Header extends React.Component{
             addMovieInput: e.target.value
         });
     }
-    handleAddMovie = () => {
+    handleAddMovie = (e) => {
+        e.preventDefault();
         this.props.onAddMovie(this.state.addMovieInput)
     }
     render(){
