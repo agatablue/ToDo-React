@@ -4,13 +4,13 @@ import {About} from './about.jsx';
 import {NotFound} from './notFound.jsx';
 import {Test} from './test.jsx';
 import {Navigation} from './navigation.jsx';
-import { Router,
+import {
+    HashRouter,
     Route,
-    Link,
-    IndexLink,
-    IndexRoute,
-    hashHistory
-} from 'react-router';
+    NavLink as Link,
+    Switch,
+    NavLink,
+  } from 'react-router-dom';
 
 class Routing extends React.Component {
     constructor(props){
@@ -18,15 +18,17 @@ class Routing extends React.Component {
     }
 
     render() {
-        return  <Router history={hashHistory}>
-            <Route path='/' component={Navigation}>
-                <IndexRoute component={App} />
+        return  <HashRouter>
+            <div>
+              <Navigation />
+             <Switch>
+                <Route exact path='/' component={App} />
                 <Route path='/about' component={About}/>
                 <Route path='/test' component={Test}/>
                 <Route path='*' component={NotFound} />
-            </Route>
-            
-        </Router>
+           </Switch>
+           </div>
+       </HashRouter>;
     }
 }
 
