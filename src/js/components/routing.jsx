@@ -12,15 +12,10 @@ import {
     NavLink,
   } from 'react-router-dom';
 
-class Routing extends React.Component {
-    constructor(props){
-        super(props)
-    }
-
-    render() {
-        return  <HashRouter>
+const Routing = () => {
+    return  <HashRouter>
             <div>
-              <Navigation />
+             <Navigation />
              <Switch>
                 <Route exact path='/' component={App} />
                 <Route path='/about' component={About}/>
@@ -29,7 +24,6 @@ class Routing extends React.Component {
            </Switch>
            </div>
        </HashRouter>;
-    }
 }
 
 export {Routing}

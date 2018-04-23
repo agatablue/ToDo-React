@@ -15,6 +15,12 @@ module.exports = {
         filename: '[name]',
         path: __dirname + '/build'
     },
+ 
+    devServer: {
+        inline: true,
+        contentBase: './',
+        port: 3002
+    },
 
     plugins: [
         new ExtractTextPlugin('./css/app.css')

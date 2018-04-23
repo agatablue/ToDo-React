@@ -1,8 +1,9 @@
 import React from 'react';
 
 class MovieItem extends React.Component{
- 
+    
     render(){
+        console.log(this.props)
         const listItem =  <li>
             <input id={this.props.labelId} type='checkbox'/>
             <label htmlFor={this.props.labelId} >

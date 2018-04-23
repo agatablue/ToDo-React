@@ -26,10 +26,12 @@ class App extends React.Component {
     }
 
     addMovie = (movie) => {
-        const copyMovieList = this.state.movies.slice();
-        copyMovieList.push(movie);
+        const obj = {
+            title: movie,
+            labelId: "label-"+this.state.movies.length
+        }
         this.setState({
-            movies: copyMovieList
+            movies: [...this.state.movies, obj]
         })
     }
 

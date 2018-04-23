@@ -23132,8 +23132,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Routing = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
@@ -23152,46 +23150,25 @@ var _reactRouterDom = __webpack_require__(94);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Routing = function (_React$Component) {
-    _inherits(Routing, _React$Component);
-
-    function Routing(props) {
-        _classCallCheck(this, Routing);
-
-        return _possibleConstructorReturn(this, (Routing.__proto__ || Object.getPrototypeOf(Routing)).call(this, props));
-    }
-
-    _createClass(Routing, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                _reactRouterDom.HashRouter,
+var Routing = function Routing() {
+    return _react2.default.createElement(
+        _reactRouterDom.HashRouter,
+        null,
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_navigation.Navigation, null),
+            _react2.default.createElement(
+                _reactRouterDom.Switch,
                 null,
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(_navigation.Navigation, null),
-                    _react2.default.createElement(
-                        _reactRouterDom.Switch,
-                        null,
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app.App }),
-                        _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _about.About }),
-                        _react2.default.createElement(_reactRouterDom.Route, { path: '/test', component: _test.Test }),
-                        _react2.default.createElement(_reactRouterDom.Route, { path: '*', component: _notFound.NotFound })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Routing;
-}(_react2.default.Component);
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app.App }),
+                _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _about.About }),
+                _react2.default.createElement(_reactRouterDom.Route, { path: '/test', component: _test.Test }),
+                _react2.default.createElement(_reactRouterDom.Route, { path: '*', component: _notFound.NotFound })
+            )
+        )
+    );
+};
 
 exports.Routing = Routing;
 
@@ -23221,6 +23198,8 @@ var _about = __webpack_require__(93);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23238,10 +23217,12 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.addMovie = function (movie) {
-            var copyMovieList = _this.state.movies.slice();
-            copyMovieList.push(movie);
+            var obj = {
+                title: movie,
+                labelId: "label-" + _this.state.movies.length
+            };
             _this.setState({
-                movies: copyMovieList
+                movies: [].concat(_toConsumableArray(_this.state.movies), [obj])
             });
         };
 
@@ -23416,6 +23397,7 @@ var MovieList = function (_React$Component) {
     _createClass(MovieList, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
+            console.log(nextProps);
             this.setState({
                 items: nextProps.items
             });
@@ -23423,16 +23405,14 @@ var MovieList = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var items = [];
-            if (this.state.items != undefined) {
-                items = this.state.items.map(function (item, i) {
-                    return _react2.default.createElement(_movieItem.MovieItem, {
-                        title: item.title,
-                        key: i,
-                        labelId: 'label-' + (i + 1)
-                    });
+            console.log("this.state.items", this.state.items);
+            var items = this.state.items.map(function (item, i) {
+                return _react2.default.createElement(_movieItem.MovieItem, {
+                    title: item.title,
+                    key: i,
+                    labelId: 'label-' + (i + 1)
                 });
-            }
+            });
 
             return _react2.default.createElement(
                 'ul',
@@ -23485,6 +23465,7 @@ var MovieItem = function (_React$Component) {
     _createClass(MovieItem, [{
         key: 'render',
         value: function render() {
+            console.log(this.props);
             var listItem = _react2.default.createElement(
                 'li',
                 null,
@@ -27460,7 +27441,7 @@ exports = module.exports = __webpack_require__(240)(undefined);
 
 
 // module
-exports.push([module.i, "/* tiny reset */\nhtml, body {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%; }\n\n/* body */\nbody {\n  background: #4d244e;\n  font-family: sans-serif;\n  border-top: 5px solid #aa8e8d;\n  color: #fff; }\n\n/* title */\nh1 {\n  color: #aa8e8d;\n  text-align: center;\n  font-size: 32px;\n  font-weight: 900; }\n\n.navigation {\n  padding: 0;\n  list-style: none; }\n  .navigation li {\n    display: inline-block;\n    padding: 10px; }\n  .navigation a {\n    color: #fff; }\n\n.tasks {\n  width: 300px;\n  height: 405px;\n  position: absolute;\n  top: 20%;\n  left: 0px;\n  right: 0px;\n  margin: 0px auto; }\n  .tasks ul {\n    list-style: none;\n    padding: 0; }\n\ninput[type=checkbox] {\n  display: none; }\n\nlabel {\n  background: #ae5f75;\n  height: 69px;\n  width: 100%;\n  display: block;\n  border-bottom: 1px solid #2C3E50;\n  color: #fff;\n  text-transform: capitalize;\n  font-weight: 900;\n  font-size: 11px;\n  letter-spacing: 1px;\n  text-indent: 20px;\n  cursor: pointer;\n  transition: all 0.7s ease;\n  position: relative;\n  padding: 5px;\n  box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box; }\n\nlabel h2 span {\n  display: block;\n  font-size: 12px;\n  text-transform: capitalize;\n  font-weight: normal;\n  color: #fff; }\n\nlabel:before {\n  content: \"\";\n  width: 20px;\n  height: 20px;\n  background: #fff;\n  display: block;\n  position: absolute;\n  border-radius: 100%;\n  right: 20px;\n  top: 30%;\n  transition: border 0.7s ease; }\n\n#label-1:checked ~ label[for=label-1],\n#label-2:checked ~ label[for=label-2],\n#label-3:checked ~ label[for=label-3],\n#label-4:checked ~ label[for=label-4],\n#label-5:checked ~ label[for=label-5] {\n  background: #6d335c;\n  border-bottom: 1px solid #34495E;\n  color: #d37b79; }\n\n#label-1:checked ~ label[for=label-1] h2 span,\n#label-2:checked ~ label[for=label-2] h2 span,\n#label-3:checked ~ label[for=label-3] h2 span,\n#label-4:checked ~ label[for=label-4] h2 span,\n#label-5:checked ~ label[for=label-5] h2 span {\n  color: #f6bd66; }\n\n#label-1:checked ~ label[for=label-1]:before,\n#label-2:checked ~ label[for=label-2]:before,\n#label-3:checked ~ label[for=label-3]:before,\n#label-4:checked ~ label[for=label-4]:before,\n#label-5:checked ~ label[for=label-5]:before {\n  background: url(\"https://i.imgur.com/eoPQ05r.png\") no-repeat center center; }\n\n.monsterOne {\n  background-image: url(\"../images/Cookie_Monster.jpg\");\n  background-size: 50%;\n  height: 600px;\n  width: 600px; }\n\n.addPanel {\n  margin: 20px 0; }\n  .addPanel .addMovieInput {\n    background-color: #6d335c;\n    border: none;\n    height: 50px;\n    padding: 10px;\n    width: 50%;\n    color: #d37b79; }\n  .addPanel .addMovie {\n    background-color: #34495E;\n    border: none;\n    height: 70px;\n    padding: 10px;\n    width: 40%;\n    color: #d37b79; }\n", ""]);
+exports.push([module.i, "/* tiny reset */\nhtml, body {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%; }\n\n/* body */\nbody {\n  background: red;\n  font-family: sans-serif;\n  border-top: 5px solid #aa8e8d;\n  color: #fff; }\n\n/* title */\nh1 {\n  color: #aa8e8d;\n  text-align: center;\n  font-size: 32px;\n  font-weight: 900; }\n\n.navigation {\n  padding: 0;\n  list-style: none; }\n  .navigation li {\n    display: inline-block;\n    padding: 10px; }\n  .navigation a {\n    color: #fff; }\n\n.tasks {\n  width: 300px;\n  height: 405px;\n  position: absolute;\n  top: 20%;\n  left: 0px;\n  right: 0px;\n  margin: 0px auto; }\n  .tasks ul {\n    list-style: none;\n    padding: 0; }\n\ninput[type=checkbox] {\n  display: none; }\n\nlabel {\n  background: #ae5f75;\n  height: 69px;\n  width: 100%;\n  display: block;\n  border-bottom: 1px solid #2C3E50;\n  color: #fff;\n  text-transform: capitalize;\n  font-weight: 900;\n  font-size: 11px;\n  letter-spacing: 1px;\n  text-indent: 20px;\n  cursor: pointer;\n  transition: all 0.7s ease;\n  position: relative;\n  padding: 5px;\n  box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box; }\n\nlabel h2 span {\n  display: block;\n  font-size: 12px;\n  text-transform: capitalize;\n  font-weight: normal;\n  color: #fff; }\n\nlabel:before {\n  content: \"\";\n  width: 20px;\n  height: 20px;\n  background: #fff;\n  display: block;\n  position: absolute;\n  border-radius: 100%;\n  right: 20px;\n  top: 30%;\n  transition: border 0.7s ease; }\n\n#label-1:checked ~ label[for=label-1],\n#label-2:checked ~ label[for=label-2],\n#label-3:checked ~ label[for=label-3],\n#label-4:checked ~ label[for=label-4],\n#label-5:checked ~ label[for=label-5] {\n  background: #6d335c;\n  border-bottom: 1px solid #34495E;\n  color: #d37b79; }\n\n#label-1:checked ~ label[for=label-1] h2 span,\n#label-2:checked ~ label[for=label-2] h2 span,\n#label-3:checked ~ label[for=label-3] h2 span,\n#label-4:checked ~ label[for=label-4] h2 span,\n#label-5:checked ~ label[for=label-5] h2 span {\n  color: #f6bd66; }\n\n#label-1:checked ~ label[for=label-1]:before,\n#label-2:checked ~ label[for=label-2]:before,\n#label-3:checked ~ label[for=label-3]:before,\n#label-4:checked ~ label[for=label-4]:before,\n#label-5:checked ~ label[for=label-5]:before {\n  background: url(\"https://i.imgur.com/eoPQ05r.png\") no-repeat center center; }\n\n.monsterOne {\n  background-image: url(\"../images/Cookie_Monster.jpg\");\n  background-size: 50%;\n  height: 600px;\n  width: 600px; }\n\n.addPanel {\n  margin: 20px 0; }\n  .addPanel .addMovieInput {\n    background-color: #6d335c;\n    border: none;\n    height: 50px;\n    padding: 10px;\n    width: 50%;\n    color: #d37b79; }\n  .addPanel .addMovie {\n    background-color: #34495E;\n    border: none;\n    height: 70px;\n    padding: 10px;\n    width: 40%;\n    color: #d37b79; }\n", ""]);
 
 // exports
 
